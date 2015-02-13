@@ -17,11 +17,17 @@ EOF
 ) > $SPARK_HOME/conf/spark-defaults.conf
 }
 
+set-spark-on-tez-conf() {
+  cp /etc/hadoop/conf/core-site.xml $SPARK_HOME/external/spark-native-yarn/conf/
+  cp /etc/hadoop/conf/yarn-site.xml $SPARK_HOME/external/spark-native-yarn/conf/
+}
+
 install-spark() {
   export SPARK_HOME=/usr/hdp/$HDP_VERSION/spark
   curl -s http://public-repo-1.hortonworks.com/HDP-LABS/Projects/spark/$SPARK_VERSION/spark-$SPARK_DIST_VERSION.tgz | tar -xz -C /usr/hdp/$HDP_VERSION/
   cd /usr/hdp/$HDP_VERSION && ln -s spark-$SPARK_DIST_VERSION spark
   set-default-spark-conf
+  set-spark-on-tez-conf
 }
 
 main(){
