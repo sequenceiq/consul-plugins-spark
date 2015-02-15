@@ -15,7 +15,7 @@ recipe add --file /consul-plugins-spark/spark-recipe.json
 Or instead of this 2 steps you can use `--url` parameter to create your spark recipe.
 
 ```
-recipe add --url https://raw.githubusercontent.com/sequenceiq/consul-plugins-spark/master/spark-recipe
+recipe add --url https://raw.githubusercontent.com/sequenceiq/consul-plugins-spark/master/spark-recipe.json
 ```
 For using your recipe you have to select it. (you can check your recipes with `recipe list` command)
 ```
