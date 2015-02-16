@@ -17,6 +17,14 @@ EOF
 ) > $SPARK_HOME/conf/spark-defaults.conf
 }
 
+set-yarn-conf-dir() {
+(cat <<- EOF
+export YARN_CONF_DIR=/etc/hadoop/conf
+EOF
+) > $SPARK_HOME/conf/spark-env.sh
+}
+
+
 set-spark-on-tez-conf() {
   cp /etc/hadoop/conf/core-site.xml $SPARK_HOME/external/spark-native-yarn/conf/
   cp /etc/hadoop/conf/yarn-site.xml $SPARK_HOME/external/spark-native-yarn/conf/
@@ -28,6 +36,7 @@ install-spark() {
   cd /usr/hdp/$HDP_VERSION && ln -s spark-$SPARK_DIST_VERSION spark
   set-default-spark-conf
   set-spark-on-tez-conf
+  set-yarn-conf-dir
 }
 
 main(){
